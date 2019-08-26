@@ -145,7 +145,7 @@ pipelines:
         configuration:
           npmArgs: --no-progress --no-audit
           sourceLocation: demo/swampup-vue-frontend
-          repositoryName: npm-dev-virtual
+          repositoryName: npm
           inputResources:
             - name: frontend_gitRepo_demo
           integrations:
