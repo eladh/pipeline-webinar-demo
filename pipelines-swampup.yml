@@ -114,8 +114,6 @@ pipelines:
         type: PromoteBuild
         configuration:
           targetRepository: demo
-          integrations:
-            - name: art
           inputResources:
             - name: svc_build_info_demo
           outputResources:
