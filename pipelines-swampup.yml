@@ -223,9 +223,8 @@ pipelines:
       - name: promote_app_build
         type: PromoteBuild
         configuration:
-          targetRepo: demo
+          targetRepository: demo
           integrations:
-            - name: art
             - name: jfrog_slack
           inputResources:
             - name: app_build_info_demo
@@ -245,8 +244,6 @@ pipelines:
           dryRun: false
           sign: false
           description: "some random test description"
-          integrations:
-            - name: art
           inputResources:
             - name: svc_promoted_build_info_demo
               trigger: false
@@ -258,8 +255,6 @@ pipelines:
       - name: sign_demo
         type: SignReleaseBundle
         configuration:
-          integrations:
-            - name: dist
           inputResources:
             - name: releaseBundle_demo
           outputResources:
