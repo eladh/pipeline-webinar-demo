@@ -104,7 +104,7 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           integrations:
-            - name: artserver
+            - name: art
           inputSteps:
             - name: push_svc_demo
           outputResources:
@@ -214,7 +214,7 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           integrations:
-            - name: artserver
+            - name: art
           inputSteps:
             - name: build_app_demo
           outputResources:
