@@ -103,8 +103,6 @@ pipelines:
       - name: publish_svc_build_demo
         type: PublishBuildInfo
         configuration:
-          integrations:
-            - name: art
           inputSteps:
             - name: push_svc_demo
           outputResources:
@@ -114,6 +112,8 @@ pipelines:
         type: PromoteBuild
         configuration:
           targetRepository: demo
+          integrations:
+            - name: art
           inputResources:
             - name: svc_build_info_demo
           outputResources:
