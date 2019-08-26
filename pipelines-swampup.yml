@@ -129,7 +129,7 @@ pipelines:
           configFileLocation: demo/swampup-java-backend-service
           configFileName: mvn-art-config
           inputResources:
-            - name: backend_gitRepo
+            - name: backend_gitRepo_demo
           integrations:
             - name: art
         execution:
