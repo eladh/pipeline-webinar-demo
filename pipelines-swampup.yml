@@ -213,8 +213,6 @@ pipelines:
       - name: publish_app_build_demo
         type: PublishBuildInfo
         configuration:
-          integrations:
-            - name: art
           inputSteps:
             - name: build_app_demo
           outputResources:
@@ -225,6 +223,7 @@ pipelines:
         configuration:
           targetRepository: demo
           integrations:
+            - name: art
             - name: jfrog_slack
           inputResources:
             - name: app_build_info_demo
