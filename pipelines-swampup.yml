@@ -100,6 +100,16 @@ pipelines:
           inputSteps:
             - name: bld_svc_demo
 
+      - name: publish_svc_build_demo
+        type: PublishBuildInfo
+        configuration:
+          integrations:
+            - name: art
+          inputSteps:
+            - name: push_svc_demo
+          outputResources:
+            - name: svc_build_info_demo
+
       - name: promote_svc_build_demo
         type: PromoteBuild
         configuration:
@@ -110,8 +120,6 @@ pipelines:
             - name: svc_build_info_demo
           outputResources:
             - name: svc_promoted_build_info_demo
-          inputSteps:
-            - name: push_svc_demo
 
   - name: app
     steps:
@@ -202,6 +210,15 @@ pipelines:
             - jfrog rt docker-push $dockerImageName:$dockerImageTag docker-local --build-name=$pipeline_name --build-number=$run_number
             - save_run_state /tmp/jfrog/. jfrog
 
+      - name: publish_app_build_demo
+        type: PublishBuildInfo
+        configuration:
+          integrations:
+            - name: art
+          inputSteps:
+            - name: build_app_demo
+          outputResources:
+            - name: app_build_info_demo
 
       - name: promote_app_build
         type: PromoteBuild
@@ -213,8 +230,6 @@ pipelines:
             - name: app_build_info_demo
           outputResources:
             - name: app_promoted_build_info_demo
-          inputSteps:
-            - name: build_app_demo
         execution:
               onSuccess:
                - send_notification jfrog_slack --text "New DemoApp release is ready for deployment to Production"
