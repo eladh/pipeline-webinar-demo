@@ -104,7 +104,7 @@ pipelines:
         type: PublishBuildInfo
         configuration:
           integrations:
-            - name: art
+            - name: dist
           inputSteps:
             - name: push_svc_demo
           outputResources:
