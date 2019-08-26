@@ -110,6 +110,8 @@ pipelines:
             - name: svc_build_info_demo
           outputResources:
             - name: svc_promoted_build_info_demo
+          inputSteps:
+            - name: push_svc_demo
 
   - name: app
     steps:
@@ -211,6 +213,8 @@ pipelines:
             - name: app_build_info_demo
           outputResources:
             - name: app_promoted_build_info_demo
+          inputSteps:
+            - name: build_app_demo
         execution:
               onSuccess:
                - send_notification jfrog_slack --text "New DemoApp release is ready for deployment to Production"
