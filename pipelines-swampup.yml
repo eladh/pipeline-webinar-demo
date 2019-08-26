@@ -1,5 +1,5 @@
 resources:
-  - name: go_gitRepo_demo
+  - name: goservice_gitRepo_demo
     type: GitRepo
     configuration:
       path: eladh/pipeline-webinar-demo
@@ -87,7 +87,7 @@ pipelines:
           dockerImageName: artifactory-swampup.jfrogdev.co/docker-local/gosvc
           dockerImageTag: $run_number
           inputResources:
-            - name: go_gitRepo_demo
+            - name: goservice_gitRepo_demo
           integrations:
             - name: art
 
