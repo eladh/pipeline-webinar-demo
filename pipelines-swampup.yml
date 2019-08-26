@@ -48,14 +48,14 @@ resources:
   - name: releaseBundle_demo
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: art
+      sourceDistribution: dist
       name: demo-app
       version: v2.0.0
 
   - name: signedBundle_demo
     type: ReleaseBundle
     configuration:
-      sourceArtifactory: art
+      sourceDistribution: art
       name: demo-app
       version: v2.0.0
 
