@@ -124,9 +124,9 @@ pipelines:
       - name: bld_backend_demo
         type: MvnBuild
         configuration:
-          sourceLocation: .
+          sourceLocation: demo/swampup-java-backend-service
           mvnCommand: clean install -ntp
-          configFileLocation: demo/swampup-java-backend-service
+          configFileLocation: .
           configFileName: mvn-art-config
           inputResources:
             - name: backend_gitRepo_demo
