@@ -170,7 +170,7 @@ pipelines:
       - name: publish_frontend_demo
         type: NpmPublish
         configuration:
-          repositoryName: npm-libs-local
+          repositoryName: npm-local
           inputSteps:
             - name: pack_frontend
           integrations:
