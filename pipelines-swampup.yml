@@ -62,7 +62,7 @@ resources:
   - name: distributionRules_demo
     type: DistributionRule
     configuration:
-      sourceArtifactory: art
+      sourceDistribution: art
       serviceName: "*"
       siteName: "*"
       cityName: "Bengaluru"
@@ -113,7 +113,7 @@ pipelines:
       - name: promote_svc_build_demo
         type: PromoteBuild
         configuration:
-          targetRepo: demo
+          targetRepository: demo
           integrations:
             - name: art
           inputResources:
@@ -259,7 +259,7 @@ pipelines:
         type: SignReleaseBundle
         configuration:
           integrations:
-            - name: art
+            - name: dist
           inputResources:
             - name: releaseBundle_demo
           outputResources:
