@@ -127,7 +127,8 @@ pipelines:
           configuration:
             sourceLocation: .
             mvnCommand: clean install -ntp
-            configFileLocation: .
+            configFileLocation: demo/swampup-java-backend-service
+            configFileName: mvn-art-config
             inputResources:
               - name: backend_gitRepo
             integrations:
