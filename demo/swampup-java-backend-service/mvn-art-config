@@ -1,10 +1,10 @@
 version: 1
 type: maven
 resolver:
-  snapshotRepo: libs-snapshot
-  releaseRepo: libs-release
+  snapshotRepo: maven-remote
+  releaseRepo: maven-remote
   serverID: art
 deployer:
-  snapshotRepo: libs-snapshot-local
-  releaseRepo: libs-release-local
+  snapshotRepo: maven-local
+  releaseRepo: maven-local
   serverID: art
