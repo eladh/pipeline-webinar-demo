@@ -10,8 +10,8 @@ ARG REGISTRY
 MAINTAINER Elad Hirsch
 
 # Download artifacts from Artifactory
-RUN curl $REGISTRY/libs-release-local/com/jfrog/backend/1.0.0/backend-1.0.0.jar --output server.jar
-RUN curl $REGISTRY/npm-libs-local/frontend/-/frontend-3.0.0.tgz --output client.tgz
+RUN curl $REGISTRY/maven-local/com/jfrog/backend/1.0.0/backend-1.0.0.jar --output server.jar
+RUN curl $REGISTRY/npm-local/frontend/-/frontend-3.0.0.tgz --output client.tgz
 
 #Extract vue app
 RUN tar -xzf client.tgz && rm client.tgz
