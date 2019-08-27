@@ -84,7 +84,7 @@ pipelines:
         configuration:
           dockerFileLocation: demo/swampup-go-service
           dockerFileName: Dockerfile
-          dockerImageName: artifactory-swampup.jfrogdev.co/docker-local/gosvc
+          dockerImageName: 34.67.229.59/docker-local/gosvc
           dockerImageTag: $run_number
           inputResources:
             - name: goservice_gitRepo_demo
@@ -183,7 +183,7 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            dockerImageName: artifactory-swampup.jfrogdev.co/docker-local/app
+            dockerImageName: 34.67.229.59/docker-local/app
             dockerImageTag: ${run_number}
           inputResources:
             - name: backend_gitRepo_demo
@@ -272,7 +272,7 @@ pipelines:
         configuration:
           environmentVariables:
             docker_repository: demo
-            artifactory_address: artifactory-swampup.jfrogdev.co
+            artifactory_address: 34.67.229.59
           integrations:
             - name: edge_art
             - name: jfrog_slack
