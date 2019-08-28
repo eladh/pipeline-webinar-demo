@@ -132,7 +132,7 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            docker_repository: docker-prod-local
+            docker_repository: docker
             artifactory_address: docker.artifactory.bookdemos.bookdemos
           integrations:
             - name: art
