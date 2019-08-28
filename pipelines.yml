@@ -135,7 +135,7 @@ pipelines:
             docker_repository: docker-prod-local
             artifactory_address: docker.artifactory.bookdemos.bookdemos
           integrations:
-            - name: edge_art
+            - name: art
           inputResources:
             - name: deploy_vm_demo
             - name: svc_promoted_build_info_demo
