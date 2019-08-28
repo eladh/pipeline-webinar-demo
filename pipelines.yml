@@ -39,7 +39,7 @@ resources:
     configuration:
       sourceDistribution: dist
       serviceName: "*"
-      siteName: "*"
+      siteName: "England"
       cityName: "*"
       countryCodes:
         - "*"
