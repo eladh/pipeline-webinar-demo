@@ -24,14 +24,14 @@ resources:
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
-      name: demo-app
+      name: go-svc-bundle
       version: v2.0.0
 
   - name: signedBundle_demo
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
-      name: demo-app
+      name: go-svc-bundle
       version: v2.0.0
 
   - name: distributionRules_demo
@@ -99,7 +99,7 @@ pipelines:
       - name: bundle
         type: CreateReleaseBundle
         configuration:
-          releaseBundleName: demo-app
+          releaseBundleName: go-svc-bundle
           releaseBundleVersion: v2.0.$run_number
           dryRun: false
           sign: false
