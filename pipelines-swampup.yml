@@ -19,6 +19,56 @@ resources:
       buildName: svc_build
       buildNumber: 1
 
+  - name: backend_gitRepo_demo
+    type: GitRepo
+    configuration:
+      path: eladh/pipeline-webinar-demo
+      gitProvider: git
+
+  - name: app_build_info_demo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: art
+      buildName: backend_build
+      buildNumber: 1
+
+  - name: app_promoted_build_info_demo
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: art
+      buildName: backend_build
+      buildNumber: 1
+
+  - name: frontend_gitRepo_demo
+    type: GitRepo
+    configuration:
+      path: eladh/pipeline-webinar-demo
+      gitProvider: git
+
+  - name: releaseBundle_demo
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: dist
+      name: demo-app
+      version: v2.0.0
+
+  - name: signedBundle_demo
+    type: ReleaseBundle
+    configuration:
+      sourceDistribution: dist
+      name: demo-app
+      version: v2.0.0
+
+  - name: distributionRules_demo
+    type: DistributionRule
+    configuration:
+      sourceDistribution: dist
+      serviceName: "*"
+      siteName: "*"
+      cityName: "Bengaluru"
+      countryCodes:
+        - "*"
+
 pipelines:
   - name: service
     steps:
