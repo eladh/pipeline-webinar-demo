@@ -132,8 +132,7 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            docker_repository: docker
-            artifactory_address: artifactory.bookdemos.bookdemos
+            artifactory_address: docker.artifactory.bookdemos.bookdemos
           integrations:
             - name: art
           inputResources:
@@ -144,4 +143,4 @@ pipelines:
             - name: distribute
         execution:
           onExecute:
-            - ssh -i ~/.ssh/deploy_vm_demo eladh@${res_deploy_vm_demo_targets_0} sudo /home/eladh/deploy-to-prod.sh $artifactory_address $docker_repository $int_art_apikey $res_svc_promoted_build_info_demo_buildNumber
+            - ssh -i ~/.ssh/deploy_vm_demo eladh@${res_deploy_vm_demo_targets_0} sudo /home/eladh/deploy-to-prod.sh $artifactory_address $int_art_apikey $res_svc_promoted_build_info_demo_buildNumber
