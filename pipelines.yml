@@ -112,11 +112,15 @@ pipelines:
             - name: frontend_gitRepo_demo
         execution:
           onStart:
+            - export tempStateLocation="$step_tmp_dir/npmSourceState"
+            - restore_run_files npmBuildInputGitRepo $tempStateLocation
+            - pushd $tempStateLocation
             - cd $res_frontend_gitRepo_demo_resourcePath
             - ls -lh
             - cd demo/swampup-vue-frontend
             - npm install
             - npm run build
+            - add_run_files $tempStateLocation/. npmBuildInputGitRepo
 
       - name: publish_frontend_demo
         type: NpmPublish
