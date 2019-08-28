@@ -110,8 +110,6 @@ pipelines:
                 tag: v7.2.4
           inputResources:
             - name: frontend_gitRepo_demo
-          integrations:
-            - name: art
         execution:
           onStart:
             - cd $res_frontend_gitRepo_demo_resourcePath
