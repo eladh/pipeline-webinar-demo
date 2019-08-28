@@ -133,7 +133,7 @@ pipelines:
         configuration:
           environmentVariables:
             docker_repository: docker
-            artifactory_address: docker.artifactory.bookdemos.bookdemos
+            artifactory_address: artifactory.bookdemos.bookdemos
           integrations:
             - name: art
           inputResources:
