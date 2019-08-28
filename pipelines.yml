@@ -117,7 +117,7 @@ pipelines:
             - cd demo/swampup-vue-frontend
             - npm install
             - npm run build
-            - add_run_files . npmBuildInputGitRepo
+            - save_run_state . jfrog
 
       - name: publish_frontend_demo
         type: NpmPublish
