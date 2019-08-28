@@ -147,13 +147,13 @@ pipelines:
             - name: frontend_gitRepo_demo
           integrations:
             - name: art
-          execution:
-            onStart:
-              - export tempStateLocation="$step_tmp_dir/npmSourceState"
-              - restore_run_files npmBuildInputGitRepo $tempStateLocation
-              - pushd $tempStateLocation
-              - cd demo/swampup-vue-frontend
-              - npm install
+        execution:
+          onStart:
+            - export tempStateLocation="$step_tmp_dir/npmSourceState"
+            - restore_run_files npmBuildInputGitRepo $tempStateLocation
+            - pushd $tempStateLocation
+            - cd demo/swampup-vue-frontend
+            - npm install
 
       - name: pack_frontend
         type: Bash
