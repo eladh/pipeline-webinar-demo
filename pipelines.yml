@@ -19,31 +19,6 @@ resources:
       buildName: svc_build
       buildNumber: 1
 
-  - name: backend_gitRepo_demo
-    type: GitRepo
-    configuration:
-      path: eladh/pipeline-webinar-demo
-      gitProvider: git
-
-  - name: app_build_info_demo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: art
-      buildName: backend_build
-      buildNumber: 1
-
-  - name: app_promoted_build_info_demo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: art
-      buildName: backend_build
-      buildNumber: 1
-
-  - name: frontend_gitRepo_demo
-    type: GitRepo
-    configuration:
-      path: eladh/pipeline-webinar-demo
-      gitProvider: git
 
   - name: releaseBundle_demo
     type: ReleaseBundle
@@ -77,112 +52,47 @@ resources:
         - 35.224.230.233
 
 pipelines:
-
-
-  - name: app
+  - name: service
     steps:
-      - name: bld_backend_demo
-        type: MvnBuild
+      - name: bld_svc_demo
+        type: DockerBuild
         configuration:
-          runtime:
-            type: image
-            image:
-              custom:
-                name: drydock/u18java
-                tag: master
-          sourceLocation: demo/swampup-java-backend-service
-          mvnCommand: clean install -ntp
-          configFileLocation: .
-          configFileName: mvn-art-config
+          dockerFileLocation: demo/swampup-go-service
+          dockerFileName: Dockerfile
+          dockerImageName: docker.artifactory.bookdemos.bookdemos/gosvc
+          dockerImageTag: $run_number
           inputResources:
-            - name: backend_gitRepo_demo
+            - name: goservice_gitRepo_demo
           integrations:
             - name: art
 
-      - name: bld_frontend
-        type: Bash
+      - name: push_svc_demo
+        type: DockerPush
         configuration:
-          runtime:
-            type: image
-            image:
-              custom:
-                name: drydock/u16nodall
-                tag: v7.2.4
-          inputResources:
-            - name: frontend_gitRepo_demo
-        execution:
-          onStart:
-            - cd $res_frontend_gitRepo_demo_resourcePath
-            - ls -lh
-            - cd demo/swampup-vue-frontend
-            - npm install
-            - npm run build
-            - add_run_files . jfrog
-            - add_run_files . npmBuildInputGitRepo
-            - add_run_variables ${step_name}_sourceStateName="npmBuildInputGitRepo"
-            - add_run_variables ${step_name}_sourceLocation=${$res_frontend_gitRepo_demo_resourcePath/demo/swampup-vue-frontend}
-            - add_run_variables buildStepName=${step_name}
-            - add_run_variables ${step_name}_buildNumber=${run_number}
-            - add_run_variables ${step_name}_buildName=${pipeline_name}
-
-
-      - name: publish_frontend_demo
-        type: NpmPublish
-        configuration:
-          repositoryName: npm-local
+          targetRepository: docker-local
+          integrations:
+            - name: art
           inputSteps:
-            - name: bld_frontend
-          integrations:
-            - name: art
-        execution:
-          onStart:
-            - export inputNpmBuildStepName="bld_frontend"
+            - name: bld_svc_demo
 
-      - name: build_app_demo
-        type: Bash
-        configuration:
-          environmentVariables:
-            dockerImageName: artifactory-swampup.jfrogdev.co/docker-local/app
-            dockerImageTag: ${run_number}
-          inputResources:
-            - name: backend_gitRepo_demo
-          inputSteps:
-            - name: bld_backend_demo
-            - name: publish_frontend_demo
-          integrations:
-            - name: art
-        execution:
-          onStart:
-            - rm -rf $run_dir/workspace/jfrog
-            - retry_command jfrog rt config --url $int_art_url --user $int_art_user --apikey $int_art_apikey --interactive=false
-            - pushd $res_backend_gitRepo_demo_resourcePath
-            - echo $int_art_url
-            - echo $run_Number
-            - cd demo/swampup-java-backend-service
-            - add_run_variables buildStepName=${step_name}
-            - add_run_variables ${step_name}_buildNumber=${run_number}
-            - add_run_variables ${step_name}_buildName=${pipeline_name}
-            - docker build --pull --no-cache -t $dockerImageName:$dockerImageTag --build-arg REGISTRY=${int_art_url} .
-            - jfrog rt bce $pipeline_name $run_number
-            - jfrog rt docker-push $dockerImageName:$dockerImageTag docker-local --build-name=$pipeline_name --build-number=$run_number
-            - add_run_files /tmp/jfrog/. jfrog
-
-      - name: publish_app_build_demo
+      - name: publish_svc_build_demo
         type: PublishBuildInfo
         configuration:
           inputSteps:
-            - name: build_app_demo
+            - name: push_svc_demo
           outputResources:
-            - name: app_build_info_demo
+            - name: svc_build_info_demo
 
-      - name: promote_app_build
+      - name: promote_svc_build_demo
         type: PromoteBuild
         configuration:
-          targetRepository: npm-local
+          targetRepository: docker-prod-local
+          integrations:
+            - name: art
           inputResources:
-            - name: app_build_info_demo
+            - name: svc_build_info_demo
           outputResources:
-            - name: app_promoted_build_info_demo
+            - name: svc_promoted_build_info_demo
 
   - name: release
     steps:
