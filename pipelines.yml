@@ -118,6 +118,8 @@ pipelines:
             - npm install
             - npm run build
             - add_run_files . jfrog
+            - add_run_files . npmBuildInputGitRepo
+
 
       - name: publish_frontend_demo
         type: NpmPublish
