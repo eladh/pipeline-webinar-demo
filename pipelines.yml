@@ -117,7 +117,7 @@ pipelines:
             - cd demo/swampup-vue-frontend
             - npm install
             - npm run build
-            - save_run_state . jfrog
+            - add_run_files . jfrog
 
       - name: publish_frontend_demo
         type: NpmPublish
@@ -158,7 +158,7 @@ pipelines:
             - docker build --pull --no-cache -t $dockerImageName:$dockerImageTag --build-arg REGISTRY=${int_art_url} .
             - jfrog rt bce $pipeline_name $run_number
             - jfrog rt docker-push $dockerImageName:$dockerImageTag docker-local --build-name=$pipeline_name --build-number=$run_number
-            - save_run_state /tmp/jfrog/. jfrog
+            - add_run_files /tmp/jfrog/. jfrog
 
       - name: publish_app_build_demo
         type: PublishBuildInfo
