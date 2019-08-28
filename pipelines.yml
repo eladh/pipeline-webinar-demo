@@ -211,8 +211,6 @@ pipelines:
       - name: publish_app_build_demo
         type: PublishBuildInfo
         configuration:
-          integrations:
-            - name: art
           inputSteps:
             - name: build_app_demo
           outputResources:
@@ -221,8 +219,7 @@ pipelines:
       - name: promote_app_build
         type: PromoteBuild
         configuration:
-          targetRepository: demo
-          integrations:
+          targetRepository: npm-local
           inputResources:
             - name: app_build_info_demo
           outputResources:
