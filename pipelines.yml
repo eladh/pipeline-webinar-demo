@@ -114,7 +114,7 @@ pipelines:
             - name: art
         execution:
           onStart:
-            - cd $res_src_resourcePath
+            - cd $res_frontend_gitRepo_demo_resourcePath
             - ls -lh
             - cd demo/swampup-vue-frontend
             - npm install
