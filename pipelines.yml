@@ -141,15 +141,19 @@ pipelines:
 
 
       - name: bld_frontend
-        type: NpmBuild
+        type: Bash
         configuration:
-          npmArgs: --no-progress --no-audit
-          sourceLocation: demo/swampup-vue-frontend
-          repositoryName: npm
           inputResources:
             - name: frontend_gitRepo_demo
           integrations:
             - name: art
+          execution:
+            onStart:
+              - export tempStateLocation="$step_tmp_dir/npmSourceState"
+              - restore_run_files npmBuildInputGitRepo $tempStateLocation
+              - pushd $tempStateLocation
+              - cd demo/swampup-vue-frontend
+              - npm install
 
       - name: pack_frontend
         type: Bash
