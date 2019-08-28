@@ -140,6 +140,7 @@ pipelines:
       - name: bld_frontend
         type: NpmBuild
         configuration:
+          npmArgs: --no-progress --no-audit
           sourceLocation: demo/swampup-vue-frontend
           repositoryName: npm
           inputResources:
