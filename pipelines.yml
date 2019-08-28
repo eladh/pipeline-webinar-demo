@@ -77,47 +77,7 @@ resources:
         - 35.224.230.233
 
 pipelines:
-  - name: service
-    steps:
-      - name: bld_svc_demo
-        type: DockerBuild
-        configuration:
-          dockerFileLocation: demo/swampup-go-service
-          dockerFileName: Dockerfile
-          dockerImageName: docker.artifactory.bookdemos.bookdemos/gosvc
-          dockerImageTag: $run_number
-          inputResources:
-            - name: goservice_gitRepo_demo
-          integrations:
-            - name: art
 
-      - name: push_svc_demo
-        type: DockerPush
-        configuration:
-          targetRepository: docker-local
-          integrations:
-            - name: art
-          inputSteps:
-            - name: bld_svc_demo
-
-      - name: publish_svc_build_demo
-        type: PublishBuildInfo
-        configuration:
-          inputSteps:
-            - name: push_svc_demo
-          outputResources:
-            - name: svc_build_info_demo
-
-      - name: promote_svc_build_demo
-        type: PromoteBuild
-        configuration:
-          targetRepository: docker-prod-local
-          integrations:
-            - name: art
-          inputResources:
-            - name: svc_build_info_demo
-          outputResources:
-            - name: svc_promoted_build_info_demo
 
   - name: app
     steps:
