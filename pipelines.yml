@@ -119,6 +119,8 @@ pipelines:
             - npm run build
             - add_run_files . jfrog
             - add_run_files . npmBuildInputGitRepo
+            - add_run_variables ${step_name}_sourceStateName="npmBuildInputGitRepo"
+            - add_run_variables ${step_name}_sourceLocation=${$res_frontend_gitRepo_demo_resourcePath/demo/swampup-vue-frontend}
             - add_run_variables buildStepName=${step_name}
             - add_run_variables ${step_name}_buildNumber=${run_number}
             - add_run_variables ${step_name}_buildName=${pipeline_name}
