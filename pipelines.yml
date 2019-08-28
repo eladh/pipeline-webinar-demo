@@ -102,15 +102,22 @@ pipelines:
       - name: bld_frontend
         type: Bash
         configuration:
+          runtime:
+            type: image
+            image:
+              custom:
+                name: drydock/u16nodall
+                tag: v7.2.4
           inputResources:
             - name: frontend_gitRepo_demo
           integrations:
             - name: art
         execution:
           onStart:
+            - cd $res_src_resourcePath
             - ls -lh
             - cd demo/swampup-vue-frontend
-            - npm run install
+            - npm install
 
 
       - name: pack_frontend
