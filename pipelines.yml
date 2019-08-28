@@ -101,14 +101,18 @@ pipelines:
 
 
       - name: bld_frontend
-        type: NpmBuild
+        type: Bash
         configuration:
-          sourceLocation: demo/swampup-vue-frontend
-          repositoryName: npm
-          inputResources:
+          inputSteps:
             - name: frontend_gitRepo_demo
           integrations:
             - name: art
+        execution:
+          onStart:
+            - ls -lh
+            - cd demo/swampup-vue-frontend
+            - npm install
+
 
       - name: pack_frontend
         type: Bash
