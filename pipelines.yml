@@ -86,7 +86,7 @@ pipelines:
       - name: promote_svc_build_demo
         type: PromoteBuild
         configuration:
-          targetRepository: docker-prod
+          targetRepository: docker-prod-local
           integrations:
             - name: art
           inputResources:
@@ -132,7 +132,7 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            docker_repository: docker-prod
+            docker_repository: docker-prod-local
             artifactory_address: docker.artifactory.bookdemos.bookdemos
           integrations:
             - name: edge_art
