@@ -223,14 +223,10 @@ pipelines:
         configuration:
           targetRepository: demo
           integrations:
-            - name: jfrog_slack
           inputResources:
             - name: app_build_info_demo
           outputResources:
             - name: app_promoted_build_info_demo
-        execution:
-              onSuccess:
-               - send_notification jfrog_slack --text "New DemoApp release is ready for deployment to Production"
 
   - name: release
     steps:
