@@ -99,11 +99,10 @@ pipelines:
           integrations:
             - name: art
 
-
       - name: bld_frontend
         type: Bash
         configuration:
-          inputSteps:
+          inputResources:
             - name: frontend_gitRepo_demo
           integrations:
             - name: art
@@ -111,7 +110,7 @@ pipelines:
           onStart:
             - ls -lh
             - cd demo/swampup-vue-frontend
-            - npm install
+            - npm run install
 
 
       - name: pack_frontend
