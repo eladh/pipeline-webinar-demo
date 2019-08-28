@@ -219,7 +219,6 @@ pipelines:
           targetRepository: demo
           integrations:
             - name: art
-            - name: jfrog_slack
           inputResources:
             - name: app_build_info_demo
           outputResources:
