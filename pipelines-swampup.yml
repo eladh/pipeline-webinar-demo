@@ -54,7 +54,7 @@ pipelines:
       - name: promote_svc_build_demo
         type: PromoteBuild
         configuration:
-          targetRepository: demo
+          targetRepository: docker-prod
           integrations:
             - name: art
           inputResources:
