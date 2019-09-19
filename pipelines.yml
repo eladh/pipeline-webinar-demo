@@ -49,7 +49,7 @@ resources:
     configuration:
       sshKey: deploy_ssh
       targets:
-        - 35.224.230.233
+        - 34.69.49.48
 
 pipelines:
   - name: service
@@ -59,7 +59,7 @@ pipelines:
         configuration:
           dockerFileLocation: demo/swampup-go-service
           dockerFileName: Dockerfile
-          dockerImageName: docker.artifactory.bookdemos.bookdemos/gosvc
+          dockerImageName: docker.artifactory.yalladevops2.yalladevops2/gosvc
           dockerImageTag: $run_number
           inputResources:
             - name: goservice_gitRepo_demo
