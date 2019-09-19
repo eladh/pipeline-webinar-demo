@@ -132,7 +132,7 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            artifactory_address: docker.artifactory.bookdemos.bookdemos
+            artifactory_address: docker.artifactory.yallapipeline.yallapipeline
           integrations:
             - name: art
           inputResources:
