@@ -59,7 +59,7 @@ pipelines:
         configuration:
           dockerFileLocation: demo/swampup-go-service
           dockerFileName: Dockerfile
-          dockerImageName: docker.artifactory.yalladevops2.yalladevops2/gosvc
+          dockerImageName: docker.artifactory.yallapipeline.yallapipeline/gosvc
           dockerImageTag: $run_number
           inputResources:
             - name: goservice_gitRepo_demo
