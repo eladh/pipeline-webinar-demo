@@ -24,15 +24,15 @@ resources:
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
-      name: go-svc-bundle
-      version: v2.0.0
+      name: go-app-bundle
+      version: v3.0.0
 
   - name: signedBundle_demo
     type: ReleaseBundle
     configuration:
       sourceDistribution: dist
-      name: go-svc-bundle
-      version: v2.0.0
+      name: go-app-bundle
+      version: v3.0.0
 
   - name: distributionRules_demo
     type: DistributionRule
