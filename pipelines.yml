@@ -99,8 +99,8 @@ pipelines:
       - name: bundle
         type: CreateReleaseBundle
         configuration:
-          releaseBundleName: go-svc-bundle
-          releaseBundleVersion: v2.0.$run_number
+          releaseBundleName: go-app-bundle
+          releaseBundleVersion: v3.0.$run_number
           dryRun: false
           sign: false
           description: "some random test description"
