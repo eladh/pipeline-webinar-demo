@@ -19,7 +19,7 @@ var frogFacts = []string{
 func main() {
 	e := echo.New()
 	e.GET("/", func(c echo.Context) error {
-		time.Sleep(time.Second * 10)
+		time.Sleep(time.Second * 1)
 		n := rand.Int() % len(frogFacts)
 		return c.String(http.StatusOK, frogFacts[n])
 	})
